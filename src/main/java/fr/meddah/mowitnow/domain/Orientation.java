@@ -7,11 +7,11 @@ enum Orientation {
 		return relativeCoordinates;
 	}
 
-	Orientation turnLeft() {
+	Orientation leftwards() {
 		return turn(COUNTER_CLOCKWISE);
 	}
 
-	Orientation turnRight() {
+	Orientation rightwards() {
 		return turn(CLOCKWISE);
 	}
 

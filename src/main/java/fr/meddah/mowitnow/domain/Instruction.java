@@ -11,13 +11,13 @@ public enum Instruction {
 	G {
 		@Override
 		public LawnMower execute(LawnMower lawnMower, @SuppressWarnings("unused") Lawn lawn) {
-			return lawnMower.withNewOrientation(lawnMower.getOrientation().turnLeft());
+			return lawnMower.changeOrientation(lawnMower.getOrientation().leftwards());
 		}
 	},
 	D {
 		@Override
 		public LawnMower execute(LawnMower lawnMower, @SuppressWarnings("unused") Lawn lawn) {
-			return lawnMower.withNewOrientation(lawnMower.getOrientation().turnRight());
+			return lawnMower.changeOrientation(lawnMower.getOrientation().rightwards());
 		}
 	};
 

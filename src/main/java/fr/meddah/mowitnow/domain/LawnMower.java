@@ -15,7 +15,7 @@ public class LawnMower {
 		return new LawnMower(newCoordinates, orientation);
 	}
 
-	LawnMower withNewOrientation(Orientation newOrientation) {
+	LawnMower changeOrientation(Orientation newOrientation) {
 		return new LawnMower(coordinates, newOrientation);
 	}
 

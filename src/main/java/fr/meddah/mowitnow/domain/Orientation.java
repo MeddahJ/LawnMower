@@ -16,8 +16,8 @@ enum Orientation {
 	}
 
 	private Orientation turn(int n) {
-		int four = Orientation.values().length;
-		return Orientation.values()[(ordinal() + n + four) % four];// remainder != modulo
+		int directions = Orientation.values().length;
+		return Orientation.values()[(directions + ordinal() + n ) % directions];
 	}
 
 	private Orientation(int x, int y) {

@@ -4,7 +4,7 @@ public enum Instruction {
 	A {
 		@Override
 		public LawnMower execute(LawnMower lawnMower, Lawn lawn) {
-			Coordinates futureCoordinates = lawnMower.getCoordinates().addTo(lawnMower.getOrientation().getRelativeCoordinates());
+			Coordinates futureCoordinates = lawnMower.getOrientation().getRelativeCoordinates().addTo(lawnMower.getCoordinates());
 			return lawn.contains(futureCoordinates) ? lawnMower.changeCoordinates(futureCoordinates) : lawnMower;
 		}
 	},

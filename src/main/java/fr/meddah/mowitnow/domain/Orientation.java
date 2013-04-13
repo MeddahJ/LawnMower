@@ -8,11 +8,11 @@ enum Orientation {
 	}
 
 	Orientation turnLeft() {
-		return turn(-1);
+		return turn(COUNTER_CLOCKWISE);
 	}
 
 	Orientation turnRight() {
-		return turn(+1);
+		return turn(CLOCKWISE);
 	}
 
 	private Orientation turn(int n) {
@@ -25,4 +25,7 @@ enum Orientation {
 	}
 
 	private final Coordinates relativeCoordinates;
+
+	private static final int CLOCKWISE = 1,
+							 COUNTER_CLOCKWISE = -1;
 }

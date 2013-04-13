@@ -13,13 +13,13 @@ public class Lawn {
 	}
 
 	boolean contains(Coordinates coordinates) {
-		return xRange.contains(coordinates.getX()) && yRange.contains(coordinates.getY());
+		return horizontalRange.contains(coordinates.getX()) && verticalRange.contains(coordinates.getY());
 	}
 
 	private Lawn(int x, int y) {
-		xRange = Ranges.closed(0, x);
-		yRange = Ranges.closed(0, y);
+		horizontalRange = Ranges.closed(0, x);
+		verticalRange = Ranges.closed(0, y);
 	}
-	private final Range<Integer> xRange, yRange;
+	private final Range<Integer> horizontalRange, verticalRange;
 
 }

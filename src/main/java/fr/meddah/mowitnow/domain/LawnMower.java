@@ -11,7 +11,7 @@ public class LawnMower {
 		return new LawnMower(coordinates, orientation);
 	}
 
-	LawnMower withNewCoordinates(Coordinates newCoordinates) {
+	LawnMower changeCoordinates(Coordinates newCoordinates) {
 		return new LawnMower(newCoordinates, orientation);
 	}
 
@@ -39,5 +39,4 @@ public class LawnMower {
 
 	private Coordinates coordinates;
 	private Orientation orientation;
-	
 }

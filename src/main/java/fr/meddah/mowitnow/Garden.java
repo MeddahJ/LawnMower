@@ -2,12 +2,13 @@ package fr.meddah.mowitnow;
 
 import java.util.List;
 
-import fr.meddah.mowitnow.domain.Instruction;
 import fr.meddah.mowitnow.domain.Lawn;
 import fr.meddah.mowitnow.domain.LawnMower;
+
+import static com.google.common.collect.Lists.*;
+import static fr.meddah.mowitnow.domain.Instruction.*;
 import static fr.meddah.mowitnow.domain.Lawn.*;
 import static fr.meddah.mowitnow.domain.LawnMower.*;
-import static java.util.Arrays.*;
 
 public class Garden {
 
@@ -22,27 +23,23 @@ public class Garden {
 
 		class GardenLawn {
 			LawnMowerInstructions following(String instructions) {
-				return new LawnMowerInstructions(lettersOf(instructions));
+				return new LawnMowerInstructions(charactersOf(instructions));
 			}
 
 			class LawnMowerInstructions {
 				String getFinalPosition() {
 					LawnMower currentLawnMower = lawnMower;
-					for (String instruction : instructions) {
-						currentLawnMower = Instruction.valueOf(instruction).execute(currentLawnMower, lawn);
+					for (Character instruction : instructions) {
+						currentLawnMower = from(instruction).execute(currentLawnMower, lawn);
 					}
 					return currentLawnMower.toString();
 				}
 
-				private LawnMowerInstructions(List<String> instructions) {
+				private LawnMowerInstructions(List<Character> instructions) {
 					this.instructions = instructions;
 				}
 
-				private List<String> instructions;
-			}
-
-			private List<String> lettersOf(String instructionSequence) {
-				return asList(instructionSequence.split("(?<!^)"));// Split on empty string but discards the first empty result
+				private List<Character> instructions;
 			}
 
 			private GardenLawn(Lawn lawn) {

@@ -22,4 +22,8 @@ public enum Instruction {
 	};
 
 	public abstract LawnMower execute(LawnMower lawnMower, Lawn lawn);
+
+	public static Instruction from(Character character) {
+		return Instruction.valueOf(character.toString());
+	}
 }

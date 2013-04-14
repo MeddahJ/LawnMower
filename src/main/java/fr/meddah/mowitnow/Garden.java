@@ -11,7 +11,7 @@ import static java.util.Arrays.*;
 
 public class Garden {
 
-	static GardenLawnMower lawnMower(String initialState) {
+	static GardenLawnMower forLawnMower(String initialState) {
 		return new GardenLawnMower(buildLawnMower(initialState));
 	}
 
@@ -21,12 +21,12 @@ public class Garden {
 		}
 
 		class GardenLawn {
-			LawnMowerIntructions with(String instructions) {
-				return new LawnMowerIntructions(lettersOf(instructions));
+			LawnMowerInstructions following(String instructions) {
+				return new LawnMowerInstructions(lettersOf(instructions));
 			}
 
-			class LawnMowerIntructions {
-				String getFinalState() {
+			class LawnMowerInstructions {
+				String getFinalPosition() {
 					LawnMower currentLawnMower = lawnMower;
 					for (String instruction : instructions) {
 						currentLawnMower = Instruction.valueOf(instruction).execute(currentLawnMower, lawn);
@@ -34,7 +34,7 @@ public class Garden {
 					return currentLawnMower.toString();
 				}
 
-				private LawnMowerIntructions(List<String> instructions) {
+				private LawnMowerInstructions(List<String> instructions) {
 					this.instructions = instructions;
 				}
 

@@ -17,10 +17,10 @@ public class Main {
 		List<String> lines = readLines(new File(args[0]), Charsets.UTF_8);
 
 		String lawn = lines.remove(0);
-			System.out.println(lawnMower(initialState).mowing(lawn).with(instructions).getFinalState());
 		for (List<String> lawnMowerConfiguration : partition(lines, 2)) {
 			String initialState = lawnMowerConfiguration.get(0);
 			String instructions = lawnMowerConfiguration.get(1);
+			System.out.println(forLawnMower(initialState).mowing(lawn).following(instructions).getFinalPosition());
 		}
 	}
 }

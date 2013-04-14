@@ -10,49 +10,47 @@ import static fr.meddah.mowitnow.domain.Instruction.*;
 import static fr.meddah.mowitnow.domain.Lawn.*;
 import static fr.meddah.mowitnow.domain.LawnMower.*;
 
-public class Garden {
+public class Garden implements GardenLawnMower, GardenLawn, GardenLawnMowerInstruction {
 
 	static GardenLawnMower forLawnMower(String initialState) {
-		return new GardenLawnMower(buildLawnMower(initialState));
+		Garden garden = new Garden();
+		garden.lawnMower = buildLawnMower(initialState);
+		return garden;
 	}
 
-	static class GardenLawnMower {
-		GardenLawn mowing(String lawn) {
-			return new GardenLawn(buildLawn(lawn));
-		}
-
-		class GardenLawn {
-			LawnMowerInstructions following(String instructions) {
-				return new LawnMowerInstructions(charactersOf(instructions));
-			}
-
-			class LawnMowerInstructions {
-				String getFinalPosition() {
-					LawnMower currentLawnMower = lawnMower;
-					for (Character instruction : instructions) {
-						currentLawnMower = from(instruction).execute(currentLawnMower, lawn);
-					}
-					return currentLawnMower.toString();
-				}
-
-				private LawnMowerInstructions(List<Character> instructions) {
-					this.instructions = instructions;
-				}
-
-				private List<Character> instructions;
-			}
-
-			private GardenLawn(Lawn lawn) {
-				this.lawn = lawn;
-			}
-
-			private Lawn lawn;
-		}
-
-		private GardenLawnMower(LawnMower lawnMower) {
-			this.lawnMower = lawnMower;
-		}
-
-		private LawnMower lawnMower;
+	public GardenLawn mowing(String lawn) {
+		this.lawn = buildLawn(lawn);
+		return this;
 	}
+
+	public GardenLawnMowerInstruction following(String instructions) {
+		this.instructions = charactersOf(instructions);
+		return this;
+	}
+
+	public String getFinalPosition() {
+		LawnMower currentLawnMower = lawnMower;
+		for (Character instruction : instructions) {
+			currentLawnMower = from(instruction).execute(currentLawnMower, lawn);
+		}
+		return currentLawnMower.toString();
+	}
+
+	private Garden(){}
+
+	private LawnMower lawnMower;
+	private Lawn lawn;
+	private List<Character> instructions;
+}
+
+interface GardenLawnMower {
+	GardenLawn mowing(String lawn);
+}
+
+interface GardenLawn {
+	GardenLawnMowerInstruction following(String instructions);
+}
+
+interface GardenLawnMowerInstruction {
+	String getFinalPosition();
 }
